@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\hardhat",
+    "\\hardhat\\contracts\\mocks",
+    "\\public",
+    "\\src",
+    "\\src\\components",
+    "\\src\\features",
+    "\\src\\pages",
+    "\\src\\utils"
   ],
-  "SelectedNode": "\\C:\\Users\\asus\\Source\\Repos\\DecentralAirbnb",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
