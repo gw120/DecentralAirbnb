@@ -5,6 +5,9 @@ pragma solidity ^0.8.0;
 import "./PriceConverter.sol";
 
 contract DecentralAirbnb is PriceConverter {
+     //--------------------------------------------------------------------
+    // VARIABLES
+
     address public admin;
 
     uint256 public listingFee;
@@ -32,6 +35,9 @@ contract DecentralAirbnb is PriceConverter {
     RentalInfo[] public rentals;
 
     mapping(uint256 => Booking[]) rentalBookings;
+  
+    //--------------------------------------------------------------------
+    // EVENTS
 
     event NewRentalCreated(
         uint256 id,
@@ -55,16 +61,25 @@ contract DecentralAirbnb is PriceConverter {
         uint256 timestamp
     );
 
+     //--------------------------------------------------------------------
+    // MODIFIERS
+
     modifier onlyAdmin() {
         require(msg.sender == admin, "Only Admin Can Call This");
         _;
     }
+
+    //--------------------------------------------------------------------
+    // CONSTRUCTOR
 
     constructor(uint256 _listingFee, address _priceFeedAddress) {
         admin = msg.sender;
         listingFee = _listingFee;
         priceFeedAddress = _priceFeedAddress;
     }
+
+    //--------------------------------------------------------------------
+    // FUNCTIONS
 
     function addRental(
         string memory _name,
@@ -152,7 +167,8 @@ contract DecentralAirbnb is PriceConverter {
         require(_id < _rentalIds, "Wrong rental id");
 
         Booking[] memory _rentalBookings = rentalBookings[_id];
-
+      
+      // Make sure the rental is available in the booking dates
         for (uint256 i = 0; i < _rentalBookings.length; i++) {
             if (
                 (_fromDateTimestamp >= _rentalBookings[i].fromTimestamp) &&
@@ -166,6 +182,7 @@ contract DecentralAirbnb is PriceConverter {
         return false;
     }
 
+    // Return the list of booking for a given rental
     function getRentals() public view returns (RentalInfo[] memory) {
         return rentals;
     }
@@ -188,6 +205,7 @@ contract DecentralAirbnb is PriceConverter {
         return rentals[_id];
     }
 
+    // ADMIN FUNCTIONS
     function changeListingFee(uint256 _newFee) external onlyAdmin {
         listingFee = _newFee;
     }
