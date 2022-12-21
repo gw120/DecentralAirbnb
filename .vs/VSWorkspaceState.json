@@ -2,14 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\hardhat",
-    "\\hardhat\\contracts\\mocks",
     "\\public",
     "\\src",
-    "\\src\\components",
-    "\\src\\features",
-    "\\src\\pages",
     "\\src\\utils"
   ],
-  "SelectedNode": "\\README.md",
+  "SelectedNode": "\\hardhat\\contracts",
   "PreviewInSolutionExplorer": false
 }
