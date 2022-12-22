@@ -4,8 +4,9 @@
     "\\hardhat",
     "\\public",
     "\\src",
+    "\\src\\pages",
     "\\src\\utils"
   ],
-  "SelectedNode": "\\hardhat\\contracts",
+  "SelectedNode": "\\src\\pages\\AddRental.js",
   "PreviewInSolutionExplorer": false
 }
