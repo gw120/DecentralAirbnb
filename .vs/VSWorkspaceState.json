@@ -2,11 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\hardhat",
+    "\\hardhat\\contracts",
+    "\\hardhat\\test",
     "\\public",
     "\\src",
     "\\src\\pages",
     "\\src\\utils"
   ],
-  "SelectedNode": "\\src\\pages\\AddRental.js",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
