@@ -2,14 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\hardhat",
-    "\\hardhat\\contracts",
-    "\\hardhat\\scripts",
-    "\\hardhat\\test",
-    "\\public",
-    "\\src",
-    "\\src\\pages",
-    "\\src\\utils"
+    "\\src"
   ],
-  "SelectedNode": "\\hardhat\\contracts\\DecentralAirbnb.sol",
+  "SelectedNode": "\\hardhat\\hardhat.config.js",
   "PreviewInSolutionExplorer": false
 }
