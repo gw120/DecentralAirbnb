@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\hardhat",
+    "\\hardhat\\scripts",
     "\\src"
   ],
-  "SelectedNode": "\\hardhat\\hardhat.config.js",
+  "SelectedNode": "\\hardhat\\scripts\\deploy-airbnb.js",
   "PreviewInSolutionExplorer": false
 }
