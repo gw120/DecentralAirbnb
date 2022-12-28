@@ -1,11 +1,10 @@
+import "../assets/css/AddRental.css";
+import "bootstrap/dist/css/bootstrap.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "../assets/css/AddRental.css";
-import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 import { ethers, utils } from "ethers";
-import { Buffer } from "buffer";
 import { Form } from "react-bootstrap";
 import { Button, CircularProgress } from "@mui/material";
 import Connect from "../components/Connect";
@@ -16,9 +15,7 @@ import bg from "../assets/images/add-image.jpg";
 import DecentralAirbnb from "../artifacts/contracts/DecentralAirbnb.sol/DecentralAirbnb.json";
 import { contractAddress, networkDeployedTo } from "../utils/contracts-config";
 import networksMap from "../utils/networksMap.json";
-
 import { StoreContent } from "../utils/StoreContent";
-import axios from "axios";
 
 const Rentals = () => {
     let navigate = useNavigate();
@@ -29,6 +26,7 @@ const Rentals = () => {
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+
     const [formInput, setFormInput] = useState({
         name: "",
         city: "",
@@ -41,31 +39,23 @@ const Rentals = () => {
 
     const getImage = async (e) => {
         e.preventDefault();
-        const reader = new window.FileReader();
         const file = e.target.files[0];
-
+        setImage(file);
         setImageName(file.name);
-
-        if (file !== undefined) {
-            reader.readAsArrayBuffer(file);
-
-            reader.onloadend = () => {
-                const buf = Buffer(reader.result, "base64");
-                setImage(buf);
-                setImagePreview(file);
-            };
-        }
+      
     };
 
     const addRental = async () => {
         if (data.network == networksMap[networkDeployedTo]) {
             if (image !== undefined && window.ethereum !== undefined) {
+
                 try {
                     setLoading(true);
                     const provider = new ethers.providers.Web3Provider(
                         window.ethereum,
                         "any"
                     );
+
                     const signer = provider.getSigner();
                     const AirbnbContract = new ethers.Contract(
                         contractAddress,
@@ -74,8 +64,7 @@ const Rentals = () => {
                     );
 
                     const listingFee = AirbnbContract.callStatic.listingFee();
-
-                    const cid = await StoreContent(imagePreview);
+                    const cid = await StoreContent(image);
                     const imageURI = `ipfs://${cid}/${imageName}`;
 
                     const add_tx = await AirbnbContract.addRental(
@@ -95,6 +84,7 @@ const Rentals = () => {
                     setLoading(false);
 
                     navigate("/dashboard");
+
                 } catch (err) {
                     window.alert("An error has occured");
                     setLoading(false);
@@ -229,12 +219,12 @@ const Rentals = () => {
                             }}
                         />
                         <br />
-                        {imagePreview && (
+                        {image && (
                             <div style={{ textAlign: "center" }}>
                                 <img
                                     className="rounded mt-4"
                                     width="350"
-                                    src={URL.createObjectURL(imagePreview)}
+                                    src={URL.createObjectURL(image)}
                                 />
                             </div>
                         )}
